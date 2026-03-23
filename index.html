@@ -223,6 +223,12 @@
             position: relative;
             z-index: 10;
         }
+
+        @media (max-width: 640px) {
+            .accent-piece {
+                display: none;
+            }
+        }
     </style>
     <style data-purpose="layout">
         .main-column {
@@ -344,7 +350,7 @@
                 <div class="space-y-8" data-purpose="projects-list">
                     <div class="project-item reveal">
                         <h3 class="project-title">Herald</h3>
-                        <span class="project-subtitle">Work in progress</span>
+                        <span class="project-subtitle">Active project</span>
                         <p class="project-description">
                             Human-Evaluated Remediation Agent with Logged Decisions: an agentic infrastructure
                             operations platform where AI detects incidents, diagnoses failures, and recommends
@@ -360,8 +366,8 @@
                     </div>
 
                     <div class="project-item reveal">
-                        <h3 class="project-title">SEC Review Priority Early Warning Index</h3>
-                        <span class="project-subtitle">Work in progress</span>
+                        <h3 class="project-title">SEC Early Warning Index</h3>
+                        <span class="project-subtitle">Active project</span>
                         <p class="project-description">
                             A public-data monitoring system built on SEC EDGAR filings that ranks issuers by
                             review priority using filing-behavior anomalies, explainable scoring, and a lightweight
