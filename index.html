@@ -331,7 +331,9 @@
             <div class="main-column">
                 <h3 class="sidebar-heading">Education</h3>
                 <p class="sidebar-text">
-                    Bachelor's in Computer Science, Queens College, 2025
+                    CUNY Queens College, Queens NY<br>
+                    Bachelor of Arts in Computer Science<br>
+                    Aug 2020 - Jan 2025
                 </p>
             </div>
         </section>
@@ -341,40 +343,77 @@
                 <h3 class="sidebar-heading">Projects</h3>
                 <div class="space-y-8" data-purpose="projects-list">
                     <div class="project-item reveal">
-                        <h3 class="project-title">AWS Servlet</h3>
+                        <h3 class="project-title">Herald</h3>
+                        <span class="project-subtitle">Work in progress</span>
                         <p class="project-description">
-                            Designed and deployed an AWS-hosted servlet for file storage in a MySQL database,
-                            integrated Apache and Tomcat for management, and used Kubernetes for load balancing
-                            and scalability.
+                            Human-Evaluated Remediation Agent with Logged Decisions: an agentic infrastructure
+                            operations platform where AI detects incidents, diagnoses failures, and recommends
+                            bounded remediations while a human operator keeps final approval authority.
                         </p>
-                        <p class="tag mt-2">AWS, MYSQL, APACHE, TOMCAT, KUBERNETES</p>
+                        <p class="tag mt-2">PYTHON, KUBERNETES, LANGGRAPH, TEMPORAL, PROMETHEUS, GRAFANA, SLACK API</p>
+                        <div class="mt-2 flex gap-4">
+                            <a class="accent-link text-[0.7rem] uppercase tracking-wider" href="https://github.com/brngg/herald" rel="noreferrer" target="_blank">GitHub</a>
+                        </div>
                         <div class="project-detail">
-                            <div class="project-detail-line">Cloud systems / servlet architecture</div>
+                            <div class="project-detail-line">Infrastructure ops / human-in-the-loop recovery</div>
                         </div>
                     </div>
 
                     <div class="project-item reveal">
-                        <h3 class="project-title">Node.js API Integration Project</h3>
+                        <h3 class="project-title">SEC Review Priority Early Warning Index</h3>
+                        <span class="project-subtitle">Work in progress</span>
                         <p class="project-description">
-                            Built a Node.js application that connected Google Sheets and AlphaVantage for
-                            real-time financial data, with OAuth 2.0 authentication and secure HTTP/HTTPS
-                            request handling.
+                            A public-data monitoring system built on SEC EDGAR filings that ranks issuers by
+                            review priority using filing-behavior anomalies, explainable scoring, and a lightweight
+                            operator workflow for daily triage and drilldown.
                         </p>
-                        <p class="tag mt-2">NODE.JS, OAUTH 2.0, GOOGLE SHEETS API, ALPHAVANTAGE API</p>
+                        <p class="tag mt-2">PYTHON, SEC EDGAR, STREAMLIT, API, POSTGRES, SQLITE, RISK SCORING</p>
+                        <div class="mt-2 flex gap-4">
+                            <a class="accent-link text-[0.7rem] uppercase tracking-wider" href="https://github.com/brngg/sec-anomaly-detector" rel="noreferrer" target="_blank">GitHub</a>
+                        </div>
                         <div class="project-detail">
-                            <div class="project-detail-line">Data pipeline / API orchestration</div>
+                            <div class="project-detail-line">Financial data / anomaly monitoring / triage</div>
                         </div>
                     </div>
 
                     <div class="project-item reveal">
-                        <h3 class="project-title">Huffman Encoding Implementation</h3>
+                        <h3 class="project-title">Content Tracker Application</h3>
                         <p class="project-description">
-                            Implemented a Huffman Encoding algorithm in Java, producing a reliable compression
-                            tool for large data sets and reinforcing fundamentals in algorithms and data structures.
+                            Built a full-stack MERN application with secure authentication, tagging, and
+                            content aggregation workflows for influencer recommendations. The app uses modular
+                            Node.js and Express APIs, JWT and bcrypt-based auth, and tested endpoints to improve
+                            reliability and regression coverage.
                         </p>
-                        <p class="tag mt-2">JAVA, ALGORITHMS, DATA COMPRESSION</p>
+                        <p class="tag mt-2">MERN, NODE.JS, EXPRESS, JWT, BCRYPT, JEST</p>
                         <div class="project-detail">
-                            <div class="project-detail-line">Algorithms / compression logic</div>
+                            <div class="project-detail-line">Full-stack app / auth / testing</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item reveal">
+                        <h3 class="project-title">Market Sentiment Analysis Platform</h3>
+                        <p class="project-description">
+                            Built a backend in Spring Boot that retrieves stock data from the Alpaca API and
+                            deployed a Python Flask microservice with FinBERT to score financial headlines by
+                            ticker. The system was designed to support sentiment-aware decisions, future dashboards,
+                            and alert-oriented workflows.
+                        </p>
+                        <p class="tag mt-2">SPRING BOOT, JAVA, PYTHON, FLASK, FINBERT, ALPACA API</p>
+                        <div class="project-detail">
+                            <div class="project-detail-line">Backend systems / sentiment pipeline</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item reveal">
+                        <h3 class="project-title">AWS-Hosted Servlet with Kubernetes</h3>
+                        <p class="project-description">
+                            Designed and deployed an AWS-hosted Java servlet to handle file uploads and
+                            management in a MySQL database, using Apache Tomcat for servlet administration
+                            and Kubernetes for load balancing and scalability.
+                        </p>
+                        <p class="tag mt-2">JAVA, AWS, MYSQL, APACHE TOMCAT, KUBERNETES</p>
+                        <div class="project-detail">
+                            <div class="project-detail-line">Cloud deployment / servlet backend</div>
                         </div>
                     </div>
                 </div>
@@ -386,6 +425,11 @@
                 <div class="mb-12" data-purpose="experience">
                     <h3 class="sidebar-heading">Experience / Contributions</h3>
                     <p class="sidebar-text">
+                        Enterprise Engineering Practicum —
+                        <span class="text-ultramarine font-semibold">Software Engineering Intern</span><br>
+                        Jan 2025 - Mar 2025 — Remote<br>
+                        Built RESTful APIs in Java with Spring Boot and JPA, applied TDD with JUnit and Mockito,
+                        and completed backend tasks involving collections, exception handling, and database operations.<br><br>
                         Day &amp; Night —
                         <span class="text-ultramarine font-semibold">IT/Developer Intern</span><br>
                         New Hyde Park, New York — Apr 2023 to Jul 2023<br>
@@ -397,20 +441,21 @@
                 <div class="mb-12" data-purpose="skills-footer">
                     <h3 class="sidebar-heading">Technical Skills</h3>
                     <div class="sidebar-text space-y-1">
-                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Languages:</strong> Java, JavaScript, HTML, CSS, SQL</p>
-                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Frameworks:</strong> Node.js, Servlets, REST APIs</p>
-                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Tools:</strong> AWS, Kubernetes, Apache, Tomcat, Git</p>
-                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Platforms:</strong> MySQL, Google Sheets API, AlphaVantage, OAuth 2.0</p>
+                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Languages:</strong> Java, C++, JavaScript, SQL</p>
+                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Frameworks:</strong> Spring Boot, JPA, Node.js, Express, REST APIs</p>
+                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Testing:</strong> JUnit, Mockito, Jest</p>
+                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Databases:</strong> MySQL, MongoDB</p>
+                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Tools:</strong> Git, Maven, Logback, Linux, Kubernetes</p>
                     </div>
                 </div>
 
                 <div class="mb-12" data-purpose="contact">
                     <h3 class="sidebar-heading">Contact</h3>
                     <p class="sidebar-text">
-                        <a class="accent-link font-medium" href="mailto:chengbr3@gmail.com">Email</a><br>
+                        <a class="accent-link font-medium" href="mailto:brandoncxw@gmail.com">Email</a><br>
                         <a class="accent-link font-medium" href="https://github.com/brngg" rel="noreferrer" target="_blank">GitHub</a><br>
                         <a class="accent-link font-medium" href="https://www.linkedin.com/in/brandon-cheng-66371a1b2/" rel="noreferrer" target="_blank">LinkedIn</a><br>
-                        <a class="accent-link font-medium" href="assets/resume/Brandon_Resume.pdf" rel="noreferrer" target="_blank">Resume</a>
+                        <a class="accent-link font-medium" href="assets/resume/Brandon_C_Resume.pdf" rel="noreferrer" target="_blank">Resume</a>
                     </p>
                 </div>
             </div>
