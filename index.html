@@ -1,142 +1,642 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brandon Cheng - Portfolio</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/mediaqueries.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=League+Spartan:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Brandon Cheng — Software Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ultramarine: "#120a8f"
+                    }
+                }
+            }
+        };
+    </script>
+    <style data-purpose="typography">
+        @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap");
+
+        body {
+            font-family: "IBM Plex Mono", monospace;
+            color: #333;
+            background-color: #fff;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        #wave-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.12;
+        }
+
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: #120a8f;
+            z-index: 1000;
+            transition: width 0.1s ease-out;
+        }
+
+        .project-title {
+            font-size: 0.75rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 0.25rem;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+        }
+
+        .project-item {
+            padding: 0.5rem;
+            margin-left: -0.5rem;
+            border-radius: 2px;
+            transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-item:hover {
+            background-color: rgba(18, 10, 143, 0.03);
+        }
+
+        .project-item:hover .project-title {
+            color: #120a8f;
+            transform: translateX(8px);
+        }
+
+        .project-subtitle {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .project-description {
+            font-size: 0.75rem;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .sidebar-heading {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            border-bottom: 1.5px solid #120a8f;
+            color: #120a8f;
+            display: inline-block;
+            position: relative;
+        }
+
+        .sidebar-heading::after {
+            content: "";
+            position: absolute;
+            bottom: -1.5px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background-color: #000;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        section:hover .sidebar-heading::after {
+            width: 100%;
+        }
+
+        .name-heading {
+            border-bottom: 0;
+            color: #111;
+            font-size: 1.05rem;
+            letter-spacing: 0.12em;
+            margin-bottom: 1rem;
+            padding-bottom: 0;
+        }
+
+        .name-heading::after {
+            display: none;
+        }
+
+        .sidebar-text {
+            font-size: 0.75rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .accent-link {
+            color: #120a8f;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            text-decoration: none;
+            padding-bottom: 1px;
+        }
+
+        .accent-link::before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #120a8f;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .accent-link:hover::before {
+            visibility: visible;
+            width: 100%;
+        }
+
+        .accent-link:hover {
+            opacity: 0.8;
+        }
+
+        .accent-subline {
+            font-size: 0.58rem;
+            letter-spacing: 0.16em;
+            opacity: 0.72;
+        }
+
+        .project-detail {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            margin-top: 0;
+            transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
+        }
+
+        .project-item:hover .project-detail {
+            max-height: 32px;
+            opacity: 1;
+            margin-top: 0.55rem;
+        }
+
+        .project-detail-line {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: #120a8f;
+            font-size: 0.62rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .project-detail-line::before {
+            content: "";
+            width: 22px;
+            height: 1px;
+            background-color: #120a8f;
+            transform: scaleX(0.55);
+            transform-origin: left center;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover .project-detail-line::before {
+            transform: scaleX(1);
+        }
+
+        main {
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 640px) {
+            .accent-piece {
+                display: none;
+            }
+        }
+    </style>
+    <style data-purpose="layout">
+        .main-column {
+            max-width: 650px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-section {
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .accent-piece.animate-section {
+            animation:
+                fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                accentPulse 5s ease-in-out 1.15s infinite;
+        }
+
+        .accent-piece.animate-section.delay-2 {
+            animation-delay: 0.2s, 1.35s;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-5 {
+            animation-delay: 0.5s;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-bullet {
+            color: #120a8f;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes accentPulse {
+            0%,
+            100% {
+                opacity: 0.68;
+                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 0.92;
+                transform: translateY(-2px);
+            }
+        }
+    </style>
 </head>
-<body>
-    <nav id="desktop-nav">
-        <div class="logo">brandon.</div>
-        <div class="nav-items">
-            <ul class="nav-links">
-                <li><a href="#about">about</a></li>
-                <li><a href="#education">education</a></li>
-                <li><a href="#experience">experience</a></li>
-                <li><a href="#projects">projects</a></li>
-                <li><a href="#resume">resume</a></li>
-                <li><a href="#contact">contact</a></li>
-
-                <div class="theme-switch-wrapper">
-                    <label class="theme-switch" for="checkbox">
-                        <input type="checkbox" id="checkbox" />
-                        <div class="slider round"></div>
-                    </label>
-                </div>
-
-            </ul>
-        </div>
-    </nav>
-    
-    <nav id="hamburger-nav">
-        <div class="logo">brandon.</div>
-        <div class="hamburger-menu">
-            <div class="hamburger-icon" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="menu-links">
-                <li><a href="#about" onclick="toggleMenu()">about</a></li>
-                <li><a href="#education" onclick="toggleMenu()">education</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">experience</a></li>
-                <li><a href="#projects" onclick="toggleMenu()">projects</a></li>
-                <li><a href="#resume" onclick="toggleMenu()">resume</a></li>
-                <li><a href="#contact" onclick="toggleMenu()">contact</a></li>
-                <li class="theme-switch-wrapper">
-                    <label class="theme-switch" for="checkbox-mobile">
-                        <input type="checkbox" id="checkbox-mobile" />
-                        <div class="slider round"></div>
-                    </label>
-                </li>
-            </div>
-        </div>
-    </nav>
-
-    <div class="portfolio-content">
-        <section id="about" class="section">
-            <img src="images/image.jpg" alt="pfp" class="profile-pic">
-            <div class="about-content">
-                <h2>About Me</h2>
-                <div class="about-text">
-                    <p>Hi I’m Brandon.</p>
-                    <p>Welcome to my website. I am a recent graduate in Computer Science exploring various fields in technology that not only interest me but also challenges me. Outside of professional pursuits I enjoy cycling and fitness training as a way to stay active. I also have a niche interest in custom mechanical keyboards and enjoy gaming as a way to connect with friends and unwind.</p>
-                    <p>I’m open and eager for new opportunities and learning from these opportunities whether it is in technology or personal interest. I believe in bringing the same enthusiasm and dedication to both professional work and personal hobbies. Feel free to explore and pursue the site. I am open to connecting with others just send me a message on LinkedIn or send me an email.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="education" class="section">
-            <h2>Education</h2>
-            <p><strong>Bachelor's in Computer Science</strong> - Queens College</p>
-            <p>Graduation Year: 2024</p>
-            
-            <!--<p><strong>Certification or Additional Training</strong></p>-->
-            <!--<p>Institution Name, Year Completed</p>-->
-        </section>
-
-        <section id="experience" class="section">
-            <h2>Experience</h2>
-            <div class="job">
-                <h3>IT/Developer Intern</h3>
-                <p class="job-info">Day & Night | New Hyde Park, New York | Apr 2023 – Jul 2023</p>
-                <p class="job-description">
-                    Provided IT support and system setup for a 50+ employee company. Contributed to developing and enhancing a ticketing system mobile app, improving user experience and reducing call volume. Refactored and documented complex codebase, creating comprehensive guides for API usage and data handling, which improved code readability and reduced onboarding time for new developers.
-            </div>
-        </section>
-
-        <section id="projects" class="section">
-            <h2>Projects</h2>
-            
-            <div class="project">
-                <p class="project-title">AWS Servlet, <span class="project-year">2024</span></p>
-                <p class="project-description">Designed and deployed an AWS-hosted servlet for file storage in a MySQL database, integrated Apache and Tomcat for management, and used Kubernetes for load balancing and scalability.</p>
-            </div>
-
-            <div class="project">
-                <p class="project-title">Node.js API Integration Project (Google Sheets & AlphaVantage), <span class="project-year">2023</span></p>
-                <p class="project-description">Developed a Node.js app integrating Google Sheets and AlphaVantage APIs for real-time financial data, implemented OAuth 2.0 authentication for secure access, and demonstrated proficiency in HTTP/HTTPS protocols.</p>
-            </div>
-
-            <div class="project">
-                <p class="project-title">Huffman Encoding Implementation, <span class="project-year">2022</span></p>
-                <p class="project-description">Designed and implemented a Huffman Encoding algorithm in Java, resulting in a reliable compression tool for large data sets.</p>
-            </div>
-            
-
-            <!--<div class="project">
-                template to use 
-                <p class="project-title"> text , <span class="project-year">2024</span></p>
-                <p class="project-description"> text </p>
-                <p class="project-link">↳ </p>
-                <p class="project-link">↳ </p>
-            </div>-->
-
-        </section>
-
-        
-        <section id="resume" class="section">
-            <h2>Resume</h2>
-            <p>View or download my resume to learn more about my qualifications and experience.</p>
-            <div class="resume-buttons">
-                <a href="assets/resume/Brandon_Resume.pdf" target="_blank" class="resume-link">View Resume</a>
-                <a href="assets/resume/Brandon_Resume.pdf" download="assets/resume/Brandon_Resume.pdf" class="resume-link">Download Resume</a>
-            </div>
-        </section>
-        <section id="contact" class="section">
-            <h2>Contact</h2>
-            <p>Email: chengbr3@brandon.com</p>
-            <p>Location: New York, New York</p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/brandon-cheng-66371a1b2/" class="contact-link" target="_blank">https://www.linkedin.com/in/brandon-cheng-66371a1b2/</a></p>
-            <p>GitHub: <a href="https://github.com/brngg" class="contact-link" target="_blank">https://github.com/brngg</a></p>
-        </section>
+<body class="p-8 md:p-12 lg:p-20">
+    <canvas aria-hidden="true" id="wave-background"></canvas>
+    <div id="scroll-progress"></div>
+    <div class="accent-piece fixed top-8 right-8 md:top-12 md:right-12 lg:top-20 lg:right-20 z-20 text-right text-[0.65rem] uppercase tracking-widest text-ultramarine animate-section delay-2">
+        <div>New York</div>
+        <div id="live-clock">00:00:00.000 ET</div>
     </div>
 
-    <script src="js/app.js"></script>
-    
+    <main class="max-w-7xl mx-auto">
+        <section class="mb-12 animate-section delay-1" data-purpose="intro-section" id="intro" data-scroll-section>
+            <div class="main-column">
+                <div data-purpose="bio">
+                    <h1 class="sidebar-heading name-heading">Brandon Cheng</h1>
+                    <p class="sidebar-text">
+                        Aspiring software engineer based in New York with a Computer Science background and an
+                        interest in systems, data, and building simple, practical software.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12 animate-section delay-2" data-purpose="education-section" id="education" data-scroll-section>
+            <div class="main-column">
+                <h3 class="sidebar-heading">Education</h3>
+                <p class="sidebar-text">
+                    CUNY Queens College, Queens NY<br>
+                    Bachelor of Arts in Computer Science<br>
+                    Aug 2020 - Jan 2025
+                </p>
+            </div>
+        </section>
+
+        <section class="mb-12 animate-section delay-3" data-purpose="projects-section" id="projects" data-scroll-section>
+            <div class="main-column">
+                <h3 class="sidebar-heading">Projects</h3>
+                <div class="space-y-8" data-purpose="projects-list">
+                    <div class="project-item reveal">
+                        <h3 class="project-title">Order Book Market Data Simulator</h3>
+                        <span class="project-subtitle">Active project</span>
+                        <p class="project-description">
+                            Built a C++17 price-time-priority matching engine with limit, market, IOC,
+                            FOK, and cancel support, plus snapshot and incremental market data streams.
+                            The system includes gRPC delivery, a browser heatmap preview, Docker deployment,
+                            and benchmarked sub-200 ns matching workloads.
+                        </p>
+                        <p class="tag mt-2">C++, CMAKE, GRPC, PROTOBUF, TYPESCRIPT, VITE, DOCKER, MARKET DATA</p>
+                        <div class="mt-2 flex gap-4">
+                            <a class="accent-link text-[0.7rem] uppercase tracking-wider" href="https://github.com/brngg/orderbook-market-data-simulator" rel="noreferrer" target="_blank">GitHub</a>
+                            <a class="accent-link text-[0.7rem] uppercase tracking-wider" href="https://orderbook-market-data-simulator.onrender.com" rel="noreferrer" target="_blank">Live Demo</a>
+                        </div>
+                        <div class="project-detail">
+                            <div class="project-detail-line">Low-latency systems / matching engine / market data</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item reveal">
+                        <h3 class="project-title">Herald</h3>
+                        <span class="project-subtitle">Active project</span>
+                        <p class="project-description">
+                            Human-Evaluated Remediation Agent with Logged Decisions: an agentic infrastructure
+                            operations platform where AI detects incidents, diagnoses failures, and recommends
+                            bounded remediations while a human operator keeps final approval authority.
+                        </p>
+                        <p class="tag mt-2">PYTHON, KUBERNETES, LANGGRAPH, TEMPORAL, PROMETHEUS, GRAFANA, SLACK API</p>
+                        <div class="mt-2 flex gap-4">
+                            <a class="accent-link text-[0.7rem] uppercase tracking-wider" href="https://github.com/brngg/herald" rel="noreferrer" target="_blank">GitHub</a>
+                        </div>
+                        <div class="project-detail">
+                            <div class="project-detail-line">Infrastructure ops / human-in-the-loop recovery</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item reveal">
+                        <h3 class="project-title">SEC Early Warning Index</h3>
+                        <span class="project-subtitle">Active project</span>
+                        <p class="project-description">
+                            A public-data monitoring system built on SEC EDGAR filings that ranks issuers by
+                            review priority using filing-behavior anomalies, explainable scoring, and a lightweight
+                            operator workflow for daily triage and drilldown.
+                        </p>
+                        <p class="tag mt-2">PYTHON, SEC EDGAR, STREAMLIT, API, POSTGRES, SQLITE, RISK SCORING</p>
+                        <div class="mt-2 flex gap-4">
+                            <a class="accent-link text-[0.7rem] uppercase tracking-wider" href="https://github.com/brngg/sec-anomaly-detector" rel="noreferrer" target="_blank">GitHub</a>
+                        </div>
+                        <div class="project-detail">
+                            <div class="project-detail-line">Financial data / anomaly monitoring / triage</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item reveal">
+                        <h3 class="project-title">Content Tracker Application</h3>
+                        <p class="project-description">
+                            Built a full-stack MERN application with secure authentication, tagging, and
+                            content aggregation workflows for influencer recommendations. The app uses modular
+                            Node.js and Express APIs, JWT and bcrypt-based auth, and tested endpoints to improve
+                            reliability and regression coverage.
+                        </p>
+                        <p class="tag mt-2">MERN, NODE.JS, EXPRESS, JWT, BCRYPT, JEST</p>
+                        <div class="project-detail">
+                            <div class="project-detail-line">Full-stack app / auth / testing</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item reveal">
+                        <h3 class="project-title">Market Sentiment Analysis Platform</h3>
+                        <p class="project-description">
+                            Built a backend in Spring Boot that retrieves stock data from the Alpaca API and
+                            deployed a Python Flask microservice with FinBERT to score financial headlines by
+                            ticker. The system was designed to support sentiment-aware decisions, future dashboards,
+                            and alert-oriented workflows.
+                        </p>
+                        <p class="tag mt-2">SPRING BOOT, JAVA, PYTHON, FLASK, FINBERT, ALPACA API</p>
+                        <div class="project-detail">
+                            <div class="project-detail-line">Backend systems / sentiment pipeline</div>
+                        </div>
+                    </div>
+
+                    <div class="project-item reveal">
+                        <h3 class="project-title">AWS-Hosted Servlet with Kubernetes</h3>
+                        <p class="project-description">
+                            Designed and deployed an AWS-hosted Java servlet to handle file uploads and
+                            management in a MySQL database, using Apache Tomcat for servlet administration
+                            and Kubernetes for load balancing and scalability.
+                        </p>
+                        <p class="tag mt-2">JAVA, AWS, MYSQL, APACHE TOMCAT, KUBERNETES</p>
+                        <div class="project-detail">
+                            <div class="project-detail-line">Cloud deployment / servlet backend</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20 pt-20 reveal" data-purpose="footer-info-section" id="details" data-scroll-section>
+            <div class="main-column">
+                <div class="mb-12" data-purpose="experience">
+                    <h3 class="sidebar-heading">Experience / Contributions</h3>
+                    <p class="sidebar-text">
+                        Enterprise Engineering Practicum —
+                        <span class="text-ultramarine font-semibold">Software Engineering Intern</span><br>
+                        Jan 2025 - Mar 2025 — Remote<br>
+                        Built RESTful APIs in Java with Spring Boot and JPA, applied TDD with JUnit and Mockito,
+                        and completed backend tasks involving collections, exception handling, and database operations.<br><br>
+                        Day &amp; Night —
+                        <span class="text-ultramarine font-semibold">IT/Developer Intern</span><br>
+                        New Hyde Park, New York — Apr 2023 to Jul 2023<br>
+                        Provided IT support for a 50+ employee company, improved a ticketing system mobile app,
+                        and documented internal APIs and data handling patterns to speed up onboarding.
+                    </p>
+                </div>
+
+                <div class="mb-12" data-purpose="skills-footer">
+                    <h3 class="sidebar-heading">Technical Skills</h3>
+                    <div class="sidebar-text space-y-1">
+                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Languages:</strong> Java, C++, JavaScript, SQL</p>
+                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Frameworks:</strong> Spring Boot, JPA, Node.js, Express, REST APIs</p>
+                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Testing:</strong> JUnit, Mockito, Jest</p>
+                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Databases:</strong> MySQL, MongoDB</p>
+                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Tools:</strong> Git, Maven, Logback, Linux, Kubernetes</p>
+                    </div>
+                </div>
+
+                <div class="mb-12" data-purpose="contact">
+                    <h3 class="sidebar-heading">Contact</h3>
+                    <p class="sidebar-text">
+                        <a class="accent-link font-medium" href="mailto:brandoncxw@gmail.com">Email</a><br>
+                        <a class="accent-link font-medium" href="https://github.com/brngg" rel="noreferrer" target="_blank">GitHub</a><br>
+                        <a class="accent-link font-medium" href="https://www.linkedin.com/in/brandon-cheng-66371a1b2/" rel="noreferrer" target="_blank">LinkedIn</a><br>
+                        <a class="accent-link font-medium" href="assets/resume/Brandon_C_Resume.pdf" rel="noreferrer" target="_blank">Resume</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="max-w-7xl mx-auto pb-12 opacity-40 text-[0.65rem] uppercase tracking-widest reveal relative z-10">
+        2026 Brandon Cheng
+    </footer>
+
+    <script>
+        if ("scrollRestoration" in history) {
+            history.scrollRestoration = "manual";
+        }
+
+        function forceScrollTop() {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+        }
+
+        forceScrollTop();
+
+        const liveClock = document.getElementById("live-clock");
+        const canvas = document.getElementById("wave-background");
+        const ctx = canvas.getContext("2d");
+        let width, height;
+        const chars = ["0", "1", "{", "}", "[", "]", ";", "=", ">", "<", "/", "*", "+", "!", "?", "&"];
+        const fontSize = 11;
+        let columns, rows;
+        let tick = 0;
+        const clockFormatter = new Intl.DateTimeFormat("en-US", {
+            timeZone: "America/New_York",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            fractionalSecondDigits: 3,
+            hour12: false
+        });
+
+        function updateClock() {
+            if (liveClock) {
+                liveClock.textContent = clockFormatter.format(new Date()) + " ET";
+            }
+
+            requestAnimationFrame(updateClock);
+        }
+
+        function initCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width * window.devicePixelRatio;
+            canvas.height = height * window.devicePixelRatio;
+            canvas.style.width = width + "px";
+            canvas.style.height = height + "px";
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+            columns = Math.floor(width / fontSize);
+            rows = Math.floor(height / fontSize);
+            ctx.font = fontSize + 'px "IBM Plex Mono"';
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            tick += 0.01;
+            ctx.fillStyle = "#120a8f";
+
+            for (let x = 0; x < columns; x++) {
+                const xPos = x * fontSize;
+                const waveY1 =
+                    height * 0.35 +
+                    Math.sin(x * 0.04 + tick) * (height / 5) +
+                    Math.sin(x * 0.09 - tick * 0.6) * (height / 15);
+                const waveY2 =
+                    height * 0.7 +
+                    Math.sin(x * 0.035 - tick * 0.8) * (height / 4) +
+                    Math.cos(x * 0.08 + tick * 1.2) * (height / 12);
+
+                for (let y = 0; y < rows; y++) {
+                    const yPos = y * fontSize;
+                    const dist1 = Math.abs(yPos - waveY1);
+                    const dist2 = Math.abs(yPos - waveY2);
+                    const threshold = 180;
+                    let opacity1 = Math.max(0, 1 - dist1 / threshold);
+                    let opacity2 = Math.max(0, 1 - dist2 / threshold);
+                    let finalOpacity = opacity1 + opacity2;
+
+                    if (finalOpacity > 0.05) {
+                        const texture = (Math.sin(xPos * 0.008 + yPos * 0.012 + tick * 2) + 1) / 2;
+                        finalOpacity *= 0.2 + 0.8 * texture;
+
+                        if (finalOpacity > 0.04) {
+                            ctx.globalAlpha = Math.min(1, finalOpacity * 0.6);
+                            const char = chars[Math.floor(Math.random() * chars.length)];
+                            ctx.fillText(char, xPos, yPos);
+                        }
+                    }
+                }
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener("resize", function () {
+            initCanvas();
+        });
+
+        window.addEventListener("DOMContentLoaded", forceScrollTop);
+
+        window.addEventListener("pageshow", function () {
+            forceScrollTop();
+            setTimeout(forceScrollTop, 0);
+        });
+
+        window.addEventListener("load", function () {
+            forceScrollTop();
+            setTimeout(forceScrollTop, 0);
+            setTimeout(forceScrollTop, 120);
+        });
+
+        window.addEventListener("beforeunload", function () {
+            forceScrollTop();
+        });
+
+        initCanvas();
+        draw();
+        updateClock();
+
+        window.onscroll = function () {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var heightDoc = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / heightDoc) * 100;
+            var scrollProgress = document.getElementById("scroll-progress");
+
+            if (scrollProgress) {
+                scrollProgress.style.width = scrolled + "%";
+            }
+
+            reveal();
+        };
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        reveal();
+    </script>
 </body>
 </html>
