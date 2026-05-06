@@ -1,642 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Brandon Cheng — Software Engineer Portfolio</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandon Cheng // Software Engineer</title>
+    <link rel="icon" href="data:,">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        ultramarine: "#120a8f"
+                        brand: "#0000FF",
+                        dark: "#111111",
+                        mute: "#888888",
+                        line: "#E5E5E5",
+                        surface: "#F9F9F9",
+                        bg: "#FFFFFF"
+                    },
+                    fontFamily: {
+                        sans: ["-apple-system", "BlinkMacSystemFont", "\"Helvetica Neue\"", "Helvetica", "Arial", "sans-serif"],
+                        mono: ["ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "\"Courier New\"", "monospace"]
                     }
                 }
             }
         };
     </script>
-    <style data-purpose="typography">
-        @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap");
-
-        body {
-            font-family: "IBM Plex Mono", monospace;
-            color: #333;
-            background-color: #fff;
-            -webkit-font-smoothing: antialiased;
-            scroll-behavior: smooth;
-            position: relative;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        #wave-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.12;
-        }
-
-        #scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: #120a8f;
-            z-index: 1000;
-            transition: width 0.1s ease-out;
-        }
-
-        .project-title {
-            font-size: 0.75rem;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 0.25rem;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
-        }
-
-        .project-item {
-            padding: 0.5rem;
-            margin-left: -0.5rem;
-            border-radius: 2px;
-            transition: background-color 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-item:hover {
-            background-color: rgba(18, 10, 143, 0.03);
-        }
-
-        .project-item:hover .project-title {
-            color: #120a8f;
-            transform: translateX(8px);
-        }
-
-        .project-subtitle {
-            font-size: 0.75rem;
-            color: #666;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-            display: block;
-        }
-
-        .project-description {
-            font-size: 0.75rem;
-            line-height: 1.6;
-            max-width: 600px;
-        }
-
-        .sidebar-heading {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-            border-bottom: 1.5px solid #120a8f;
-            color: #120a8f;
-            display: inline-block;
-            position: relative;
-        }
-
-        .sidebar-heading::after {
-            content: "";
-            position: absolute;
-            bottom: -1.5px;
-            left: 0;
-            width: 0;
-            height: 1.5px;
-            background-color: #000;
-            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        section:hover .sidebar-heading::after {
-            width: 100%;
-        }
-
-        .name-heading {
-            border-bottom: 0;
-            color: #111;
-            font-size: 1.05rem;
-            letter-spacing: 0.12em;
-            margin-bottom: 1rem;
-            padding-bottom: 0;
-        }
-
-        .name-heading::after {
-            display: none;
-        }
-
-        .sidebar-text {
-            font-size: 0.75rem;
-            line-height: 1.5;
-            margin-bottom: 2rem;
-        }
-
-        .tag {
-            font-size: 0.7rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: #666;
-        }
-
-        .accent-link {
-            color: #120a8f;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            text-decoration: none;
-            padding-bottom: 1px;
-        }
-
-        .accent-link::before {
-            content: "";
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: 0;
-            left: 0;
-            background-color: #120a8f;
-            visibility: hidden;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .accent-link:hover::before {
-            visibility: visible;
-            width: 100%;
-        }
-
-        .accent-link:hover {
-            opacity: 0.8;
-        }
-
-        .accent-subline {
-            font-size: 0.58rem;
-            letter-spacing: 0.16em;
-            opacity: 0.72;
-        }
-
-        .project-detail {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            margin-top: 0;
-            transition: max-height 0.35s ease, opacity 0.35s ease, margin-top 0.35s ease;
-        }
-
-        .project-item:hover .project-detail {
-            max-height: 32px;
-            opacity: 1;
-            margin-top: 0.55rem;
-        }
-
-        .project-detail-line {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            color: #120a8f;
-            font-size: 0.62rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-        }
-
-        .project-detail-line::before {
-            content: "";
-            width: 22px;
-            height: 1px;
-            background-color: #120a8f;
-            transform: scaleX(0.55);
-            transform-origin: left center;
-            transition: transform 0.3s ease;
-        }
-
-        .project-item:hover .project-detail-line::before {
-            transform: scaleX(1);
-        }
-
-        main {
-            position: relative;
-            z-index: 10;
-        }
-
-        @media (max-width: 640px) {
-            .accent-piece {
-                display: none;
-            }
-        }
-    </style>
-    <style data-purpose="layout">
-        .main-column {
-            max-width: 650px;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-section {
-            opacity: 0;
-            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .accent-piece.animate-section {
-            animation:
-                fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-                accentPulse 5s ease-in-out 1.15s infinite;
-        }
-
-        .accent-piece.animate-section.delay-2 {
-            animation-delay: 0.2s, 1.35s;
-        }
-
-        .delay-1 {
-            animation-delay: 0.1s;
-        }
-
-        .delay-2 {
-            animation-delay: 0.2s;
-        }
-
-        .delay-3 {
-            animation-delay: 0.3s;
-        }
-
-        .delay-4 {
-            animation-delay: 0.4s;
-        }
-
-        .delay-5 {
-            animation-delay: 0.5s;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .skill-bullet {
-            color: #120a8f;
-            margin-right: 0.5rem;
-        }
-
-        @keyframes accentPulse {
-            0%,
-            100% {
-                opacity: 0.68;
-                transform: translateY(0);
-            }
-
-            50% {
-                opacity: 0.92;
-                transform: translateY(-2px);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mediaqueries.css">
+    <script defer src="js/app.js"></script>
 </head>
-<body class="p-8 md:p-12 lg:p-20">
-    <canvas aria-hidden="true" id="wave-background"></canvas>
-    <div id="scroll-progress"></div>
-    <div class="accent-piece fixed top-8 right-8 md:top-12 md:right-12 lg:top-20 lg:right-20 z-20 text-right text-[0.65rem] uppercase tracking-widest text-ultramarine animate-section delay-2">
-        <div>New York</div>
-        <div id="live-clock">00:00:00.000 ET</div>
-    </div>
+<body class="bg-bg text-dark font-sans overflow-x-hidden selection:bg-brand selection:text-white pb-24">
+    <div id="cursor" aria-hidden="true"></div>
 
-    <main class="max-w-7xl mx-auto">
-        <section class="mb-12 animate-section delay-1" data-purpose="intro-section" id="intro" data-scroll-section>
-            <div class="main-column">
-                <div data-purpose="bio">
-                    <h1 class="sidebar-heading name-heading">Brandon Cheng</h1>
-                    <p class="sidebar-text">
-                        Aspiring software engineer based in New York with a Computer Science background and an
-                        interest in systems, data, and building simple, practical software.
-                    </p>
+    <main>
+        <section class="grid grid-cols-1 md:grid-cols-2 min-h-screen border-b border-line">
+            <div class="p-8 md:p-16 flex flex-col justify-center border-r border-line bg-white relative">
+                <div class="mb-16 md:mb-24 relative z-10">
+                    <h1 class="text-[clamp(2rem,5vw,4rem)] font-normal tracking-tight leading-[1.1] max-w-[20ch]">
+                        <div class="flex items-center mb-4">
+                            <span class="inline-block w-8 h-8 bg-brand mr-4"></span>
+                            <span class="ascii-avatar font-mono text-brand text-3xl md:text-4xl tracking-widest" aria-label="Animated ASCII avatar"></span>
+                        </div>
+                        Brandon<br>Cheng
+                    </h1>
+                    <div class="text-[clamp(1.2rem,2vw,1.8rem)] font-normal text-dark max-w-[35ch] mt-12 leading-relaxed">
+                        Aspiring software engineer based in New York with a Computer Science background and an interest in systems, data, and building simple, practical software.
+                        <br><br>
+                        <span class="block font-mono text-[0.85rem] uppercase tracking-wider text-mute leading-normal mb-3">Education</span>
+                        CUNY Queens College, Queens NY<br>
+                        Bachelor of Arts in Computer Science<br>
+                        Aug 2020 - Jan 2025
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative bg-dots overflow-hidden flex items-center justify-center min-h-[50vh] md:min-h-0 bg-white">
+                <canvas id="pixel-matrix" aria-label="Interactive pixel drawing canvas" class="w-full h-full absolute inset-0 z-10"></canvas>
+
+                <div class="absolute bottom-8 right-8 text-right pointer-events-none z-20 font-mono text-[0.75rem] uppercase tracking-wider text-dark bg-white/80 p-2 backdrop-blur-sm border border-line">
+                    [ ∿ INTERACTIVE_BUFFER ]<br>
+                    HOVER TO WRITE TO MEMORY<br>
+                    COLOR SPACE: <span class="text-brand font-bold">#0000FF</span>
                 </div>
             </div>
         </section>
 
-        <section class="mb-12 animate-section delay-2" data-purpose="education-section" id="education" data-scroll-section>
-            <div class="main-column">
-                <h3 class="sidebar-heading">Education</h3>
-                <p class="sidebar-text">
-                    CUNY Queens College, Queens NY<br>
-                    Bachelor of Arts in Computer Science<br>
-                    Aug 2020 - Jan 2025
-                </p>
+        <section class="p-8 md:p-16" id="projects" aria-labelledby="project-index-title">
+            <h2 id="project-index-title" class="sr-only">Project index</h2>
+            <div class="project-index-header hidden md:grid pb-4 border-b border-mute mb-4 font-mono text-[0.75rem] uppercase tracking-wider text-mute">
+                <span>UID</span>
+                <span>NOMENCLATURE</span>
+                <span>FUNCTION</span>
+                <span class="text-right">TIMESTAMP</span>
             </div>
-        </section>
 
-        <section class="mb-12 animate-section delay-3" data-purpose="projects-section" id="projects" data-scroll-section>
-            <div class="main-column">
-                <h3 class="sidebar-heading">Projects</h3>
-                <div class="space-y-8" data-purpose="projects-list">
-                    <div class="project-item reveal">
-                        <h3 class="project-title">Order Book Market Data Simulator</h3>
-                        <span class="project-subtitle">Active project</span>
-                        <p class="project-description">
-                            Built a C++17 price-time-priority matching engine with limit, market, IOC,
-                            FOK, and cancel support, plus snapshot and incremental market data streams.
-                            The system includes gRPC delivery, a browser heatmap preview, Docker deployment,
-                            and benchmarked sub-200 ns matching workloads.
+            <article class="project-panel border-b border-line">
+                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-orderbook" data-project-toggle>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">● 001</span>
+                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">Order Book Market Data Simulator <span class="project-arrow">▾</span></span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ C++ / gRPC / TypeScript ]</span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">ACTIVE</span>
+                </button>
+                <div class="project-detail-panel" id="project-orderbook" hidden>
+                    <div class="project-detail-grid">
+                        <p class="project-description-reveal">
+                            A C++17 price-time-priority matching engine with limit, market, IOC, FOK, and cancel support. It produces snapshot and incremental market data streams and includes benchmarked sub-200 ns matching workloads.
                         </p>
-                        <p class="tag mt-2">C++, CMAKE, GRPC, PROTOBUF, TYPESCRIPT, VITE, DOCKER, MARKET DATA</p>
-                        <div class="mt-2 flex gap-4">
-                            <a class="accent-link text-[0.7rem] uppercase tracking-wider" href="https://github.com/brngg/orderbook-market-data-simulator" rel="noreferrer" target="_blank">GitHub</a>
-                            <a class="accent-link text-[0.7rem] uppercase tracking-wider" href="https://orderbook-market-data-simulator.onrender.com" rel="noreferrer" target="_blank">Live Demo</a>
+                        <div class="project-detail-meta">
+                            MATCHING ENGINE / MARKET DATA / DOCKER / BENCHMARKS
                         </div>
-                        <div class="project-detail">
-                            <div class="project-detail-line">Low-latency systems / matching engine / market data</div>
-                        </div>
-                    </div>
-
-                    <div class="project-item reveal">
-                        <h3 class="project-title">Herald</h3>
-                        <span class="project-subtitle">Active project</span>
-                        <p class="project-description">
-                            Human-Evaluated Remediation Agent with Logged Decisions: an agentic infrastructure
-                            operations platform where AI detects incidents, diagnoses failures, and recommends
-                            bounded remediations while a human operator keeps final approval authority.
-                        </p>
-                        <p class="tag mt-2">PYTHON, KUBERNETES, LANGGRAPH, TEMPORAL, PROMETHEUS, GRAFANA, SLACK API</p>
-                        <div class="mt-2 flex gap-4">
-                            <a class="accent-link text-[0.7rem] uppercase tracking-wider" href="https://github.com/brngg/herald" rel="noreferrer" target="_blank">GitHub</a>
-                        </div>
-                        <div class="project-detail">
-                            <div class="project-detail-line">Infrastructure ops / human-in-the-loop recovery</div>
-                        </div>
-                    </div>
-
-                    <div class="project-item reveal">
-                        <h3 class="project-title">SEC Early Warning Index</h3>
-                        <span class="project-subtitle">Active project</span>
-                        <p class="project-description">
-                            A public-data monitoring system built on SEC EDGAR filings that ranks issuers by
-                            review priority using filing-behavior anomalies, explainable scoring, and a lightweight
-                            operator workflow for daily triage and drilldown.
-                        </p>
-                        <p class="tag mt-2">PYTHON, SEC EDGAR, STREAMLIT, API, POSTGRES, SQLITE, RISK SCORING</p>
-                        <div class="mt-2 flex gap-4">
-                            <a class="accent-link text-[0.7rem] uppercase tracking-wider" href="https://github.com/brngg/sec-anomaly-detector" rel="noreferrer" target="_blank">GitHub</a>
-                        </div>
-                        <div class="project-detail">
-                            <div class="project-detail-line">Financial data / anomaly monitoring / triage</div>
-                        </div>
-                    </div>
-
-                    <div class="project-item reveal">
-                        <h3 class="project-title">Content Tracker Application</h3>
-                        <p class="project-description">
-                            Built a full-stack MERN application with secure authentication, tagging, and
-                            content aggregation workflows for influencer recommendations. The app uses modular
-                            Node.js and Express APIs, JWT and bcrypt-based auth, and tested endpoints to improve
-                            reliability and regression coverage.
-                        </p>
-                        <p class="tag mt-2">MERN, NODE.JS, EXPRESS, JWT, BCRYPT, JEST</p>
-                        <div class="project-detail">
-                            <div class="project-detail-line">Full-stack app / auth / testing</div>
-                        </div>
-                    </div>
-
-                    <div class="project-item reveal">
-                        <h3 class="project-title">Market Sentiment Analysis Platform</h3>
-                        <p class="project-description">
-                            Built a backend in Spring Boot that retrieves stock data from the Alpaca API and
-                            deployed a Python Flask microservice with FinBERT to score financial headlines by
-                            ticker. The system was designed to support sentiment-aware decisions, future dashboards,
-                            and alert-oriented workflows.
-                        </p>
-                        <p class="tag mt-2">SPRING BOOT, JAVA, PYTHON, FLASK, FINBERT, ALPACA API</p>
-                        <div class="project-detail">
-                            <div class="project-detail-line">Backend systems / sentiment pipeline</div>
-                        </div>
-                    </div>
-
-                    <div class="project-item reveal">
-                        <h3 class="project-title">AWS-Hosted Servlet with Kubernetes</h3>
-                        <p class="project-description">
-                            Designed and deployed an AWS-hosted Java servlet to handle file uploads and
-                            management in a MySQL database, using Apache Tomcat for servlet administration
-                            and Kubernetes for load balancing and scalability.
-                        </p>
-                        <p class="tag mt-2">JAVA, AWS, MYSQL, APACHE TOMCAT, KUBERNETES</p>
-                        <div class="project-detail">
-                            <div class="project-detail-line">Cloud deployment / servlet backend</div>
+                        <div class="project-links">
+                            <a href="https://github.com/brngg/orderbook-market-data-simulator" rel="noreferrer" target="_blank">GitHub</a>
+                            <a href="https://orderbook-market-data-simulator.onrender.com" rel="noreferrer" target="_blank">Live Demo</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </article>
 
-        <section class="mb-20 pt-20 reveal" data-purpose="footer-info-section" id="details" data-scroll-section>
-            <div class="main-column">
-                <div class="mb-12" data-purpose="experience">
-                    <h3 class="sidebar-heading">Experience / Contributions</h3>
-                    <p class="sidebar-text">
-                        Enterprise Engineering Practicum —
-                        <span class="text-ultramarine font-semibold">Software Engineering Intern</span><br>
-                        Jan 2025 - Mar 2025 — Remote<br>
-                        Built RESTful APIs in Java with Spring Boot and JPA, applied TDD with JUnit and Mockito,
-                        and completed backend tasks involving collections, exception handling, and database operations.<br><br>
-                        Day &amp; Night —
-                        <span class="text-ultramarine font-semibold">IT/Developer Intern</span><br>
-                        New Hyde Park, New York — Apr 2023 to Jul 2023<br>
-                        Provided IT support for a 50+ employee company, improved a ticketing system mobile app,
-                        and documented internal APIs and data handling patterns to speed up onboarding.
-                    </p>
-                </div>
-
-                <div class="mb-12" data-purpose="skills-footer">
-                    <h3 class="sidebar-heading">Technical Skills</h3>
-                    <div class="sidebar-text space-y-1">
-                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Languages:</strong> Java, C++, JavaScript, SQL</p>
-                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Frameworks:</strong> Spring Boot, JPA, Node.js, Express, REST APIs</p>
-                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Testing:</strong> JUnit, Mockito, Jest</p>
-                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Databases:</strong> MySQL, MongoDB</p>
-                        <p><span class="skill-bullet">▸</span><strong class="text-ultramarine">Tools:</strong> Git, Maven, Logback, Linux, Kubernetes</p>
+            <article class="project-panel border-b border-line">
+                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-heatmap" data-project-toggle>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">◐ 002</span>
+                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">Market Heatmap Preview <span class="project-arrow">▾</span></span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ Vite / Docker / Render ]</span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">LIVE</span>
+                </button>
+                <div class="project-detail-panel" id="project-heatmap" hidden>
+                    <div class="project-detail-grid">
+                        <p class="project-description-reveal">
+                            Browser preview for the order book simulator that visualizes market depth and stream updates as an operator-facing heatmap. The deployment is containerized and hosted for quick inspection.
+                        </p>
+                        <div class="project-detail-meta">
+                            FRONTEND PREVIEW / MARKET DEPTH / RENDER DEPLOY
+                        </div>
+                        <div class="project-links">
+                            <a href="https://orderbook-market-data-simulator.onrender.com" rel="noreferrer" target="_blank">Live Demo</a>
+                            <a href="https://github.com/brngg/orderbook-market-data-simulator" rel="noreferrer" target="_blank">Source</a>
+                        </div>
                     </div>
                 </div>
+            </article>
 
-                <div class="mb-12" data-purpose="contact">
-                    <h3 class="sidebar-heading">Contact</h3>
-                    <p class="sidebar-text">
-                        <a class="accent-link font-medium" href="mailto:brandoncxw@gmail.com">Email</a><br>
-                        <a class="accent-link font-medium" href="https://github.com/brngg" rel="noreferrer" target="_blank">GitHub</a><br>
-                        <a class="accent-link font-medium" href="https://www.linkedin.com/in/brandon-cheng-66371a1b2/" rel="noreferrer" target="_blank">LinkedIn</a><br>
-                        <a class="accent-link font-medium" href="assets/resume/Brandon_C_Resume.pdf" rel="noreferrer" target="_blank">Resume</a>
-                    </p>
+            <article class="project-panel border-b border-line">
+                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-herald" data-project-toggle>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">● 003</span>
+                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">Herald Remediation Agent <span class="project-arrow">▾</span></span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ Python / Kubernetes ]</span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">ACTIVE</span>
+                </button>
+                <div class="project-detail-panel" id="project-herald" hidden>
+                    <div class="project-detail-grid">
+                        <p class="project-description-reveal">
+                            Human-Evaluated Remediation Agent with Logged Decisions: an infrastructure operations platform where AI detects incidents, diagnoses failures, and recommends bounded remediations while a human operator keeps final approval authority.
+                        </p>
+                        <div class="project-detail-meta">
+                            INCIDENT RESPONSE / LANGGRAPH / TEMPORAL / PROMETHEUS
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/brngg/herald" rel="noreferrer" target="_blank">GitHub</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </article>
+
+            <article class="project-panel border-b border-line">
+                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-sec" data-project-toggle>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">● 004</span>
+                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">SEC Early Warning Index <span class="project-arrow">▾</span></span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ Python / Streamlit ]</span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">ACTIVE</span>
+                </button>
+                <div class="project-detail-panel" id="project-sec" hidden>
+                    <div class="project-detail-grid">
+                        <p class="project-description-reveal">
+                            A public-data monitoring system built on SEC EDGAR filings that ranks issuers by review priority using filing-behavior anomalies, explainable scoring, and a lightweight workflow for daily triage.
+                        </p>
+                        <div class="project-detail-meta">
+                            SEC EDGAR / RISK SCORING / POSTGRES / OPERATOR TRIAGE
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/brngg/sec-anomaly-detector" rel="noreferrer" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-panel border-b border-line">
+                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-content" data-project-toggle>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">● 005</span>
+                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">Content Tracker Application <span class="project-arrow">▾</span></span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ MERN / JWT / Jest ]</span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">ARCHIVE</span>
+                </button>
+                <div class="project-detail-panel" id="project-content" hidden>
+                    <div class="project-detail-grid">
+                        <p class="project-description-reveal">
+                            A full-stack MERN application with secure authentication, tagging, and content aggregation workflows for influencer recommendations. The API uses JWT and bcrypt-based auth with tested endpoints for reliability.
+                        </p>
+                        <div class="project-detail-meta">
+                            AUTH / TAGGING / EXPRESS API / REGRESSION TESTS
+                        </div>
+                        <div class="project-links">
+                            <a href="mailto:brandon.cxw@gmail.com?subject=Content%20Tracker%20Application">Request Details</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-panel border-b border-line">
+                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-sentiment" data-project-toggle>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">○ 006</span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ ARCHIVED ━╺━ ]</span>
+                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline line-through mute-text text-mute">Market Sentiment Analysis Platform <span class="project-arrow">▾</span></span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">2024</span>
+                </button>
+                <div class="project-detail-panel" id="project-sentiment" hidden>
+                    <div class="project-detail-grid">
+                        <p class="project-description-reveal">
+                            Backend system that retrieves stock data from the Alpaca API and uses a Python Flask microservice with FinBERT to score financial headlines by ticker for sentiment-aware workflows.
+                        </p>
+                        <div class="project-detail-meta">
+                            SPRING BOOT / FLASK / FINBERT / ALPACA API
+                        </div>
+                        <div class="project-links">
+                            <a href="mailto:brandon.cxw@gmail.com?subject=Market%20Sentiment%20Analysis%20Platform">Request Details</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
         </section>
     </main>
 
-    <footer class="max-w-7xl mx-auto pb-12 opacity-40 text-[0.65rem] uppercase tracking-widest reveal relative z-10">
-        2026 Brandon Cheng
-    </footer>
-
-    <script>
-        if ("scrollRestoration" in history) {
-            history.scrollRestoration = "manual";
-        }
-
-        function forceScrollTop() {
-            window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
-        }
-
-        forceScrollTop();
-
-        const liveClock = document.getElementById("live-clock");
-        const canvas = document.getElementById("wave-background");
-        const ctx = canvas.getContext("2d");
-        let width, height;
-        const chars = ["0", "1", "{", "}", "[", "]", ";", "=", ">", "<", "/", "*", "+", "!", "?", "&"];
-        const fontSize = 11;
-        let columns, rows;
-        let tick = 0;
-        const clockFormatter = new Intl.DateTimeFormat("en-US", {
-            timeZone: "America/New_York",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-            fractionalSecondDigits: 3,
-            hour12: false
-        });
-
-        function updateClock() {
-            if (liveClock) {
-                liveClock.textContent = clockFormatter.format(new Date()) + " ET";
-            }
-
-            requestAnimationFrame(updateClock);
-        }
-
-        function initCanvas() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width * window.devicePixelRatio;
-            canvas.height = height * window.devicePixelRatio;
-            canvas.style.width = width + "px";
-            canvas.style.height = height + "px";
-            ctx.setTransform(1, 0, 0, 1, 0, 0);
-            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-            columns = Math.floor(width / fontSize);
-            rows = Math.floor(height / fontSize);
-            ctx.font = fontSize + 'px "IBM Plex Mono"';
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, width, height);
-            tick += 0.01;
-            ctx.fillStyle = "#120a8f";
-
-            for (let x = 0; x < columns; x++) {
-                const xPos = x * fontSize;
-                const waveY1 =
-                    height * 0.35 +
-                    Math.sin(x * 0.04 + tick) * (height / 5) +
-                    Math.sin(x * 0.09 - tick * 0.6) * (height / 15);
-                const waveY2 =
-                    height * 0.7 +
-                    Math.sin(x * 0.035 - tick * 0.8) * (height / 4) +
-                    Math.cos(x * 0.08 + tick * 1.2) * (height / 12);
-
-                for (let y = 0; y < rows; y++) {
-                    const yPos = y * fontSize;
-                    const dist1 = Math.abs(yPos - waveY1);
-                    const dist2 = Math.abs(yPos - waveY2);
-                    const threshold = 180;
-                    let opacity1 = Math.max(0, 1 - dist1 / threshold);
-                    let opacity2 = Math.max(0, 1 - dist2 / threshold);
-                    let finalOpacity = opacity1 + opacity2;
-
-                    if (finalOpacity > 0.05) {
-                        const texture = (Math.sin(xPos * 0.008 + yPos * 0.012 + tick * 2) + 1) / 2;
-                        finalOpacity *= 0.2 + 0.8 * texture;
-
-                        if (finalOpacity > 0.04) {
-                            ctx.globalAlpha = Math.min(1, finalOpacity * 0.6);
-                            const char = chars[Math.floor(Math.random() * chars.length)];
-                            ctx.fillText(char, xPos, yPos);
-                        }
-                    }
-                }
-            }
-
-            requestAnimationFrame(draw);
-        }
-
-        window.addEventListener("resize", function () {
-            initCanvas();
-        });
-
-        window.addEventListener("DOMContentLoaded", forceScrollTop);
-
-        window.addEventListener("pageshow", function () {
-            forceScrollTop();
-            setTimeout(forceScrollTop, 0);
-        });
-
-        window.addEventListener("load", function () {
-            forceScrollTop();
-            setTimeout(forceScrollTop, 0);
-            setTimeout(forceScrollTop, 120);
-        });
-
-        window.addEventListener("beforeunload", function () {
-            forceScrollTop();
-        });
-
-        initCanvas();
-        draw();
-        updateClock();
-
-        window.onscroll = function () {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var heightDoc = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / heightDoc) * 100;
-            var scrollProgress = document.getElementById("scroll-progress");
-
-            if (scrollProgress) {
-                scrollProgress.style.width = scrolled + "%";
-            }
-
-            reveal();
-        };
-
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-
-        reveal();
-    </script>
+    <div class="site-footer fixed bottom-0 left-0 w-full px-4 py-2 bg-white/95 backdrop-blur border-t border-line flex justify-between z-[100] font-mono text-[0.7rem] uppercase text-mute">
+        <div class="footer-ascii-wrap">
+            <img class="footer-ascii-gif" src="assets/ascii/ascii-1003-cropped.gif" alt="" aria-hidden="true">
+            <span class="sr-only">Based in: New York, NY</span>
+        </div>
+        <nav class="footer-contact ml-auto md:ml-0" aria-label="Contact links">
+            <a href="mailto:brandon.cxw@gmail.com">Email</a>
+            <a href="https://github.com/brngg" rel="noreferrer" target="_blank">GitHub</a>
+            <a href="assets/resume/Brandon_C_Resume.pdf" rel="noreferrer" target="_blank">Resume</a>
+            <a href="https://www.linkedin.com/in/brandonchengg/" rel="noreferrer" target="_blank">LinkedIn</a>
+        </nav>
+    </div>
 </body>
 </html>
