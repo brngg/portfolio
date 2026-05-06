@@ -1,13 +1,40 @@
-@media screen and (max-width: 1200px) {
-    #desktop-nav {
-        display: none;
+@media screen and (max-width: 767px) {
+    .site-footer {
+        min-height: 3.65rem;
     }
-    #hamburger-nav {
-        display: flex;
+
+    .footer-ascii-wrap {
+        height: 3.05rem;
+        min-width: 2.95rem;
+        max-width: 18vw;
     }
-    .hamburger-menu {
-        display: flex;
-        align-items: center;
+
+    .footer-ascii-gif {
+        height: 2.9rem;
     }
- }
- 
+
+    .footer-contact {
+        gap: 0.45rem;
+        font-size: 0.62rem;
+    }
+
+    .index-row-link span + span {
+        margin-top: 0.15rem;
+    }
+
+    .project-detail-grid {
+        display: block;
+        padding: 0.25rem 1rem 1.5rem;
+    }
+
+    .project-detail-grid p,
+    .project-detail-meta,
+    .project-links {
+        margin-top: 1rem;
+    }
+
+    .project-links {
+        align-items: flex-start;
+        text-align: left;
+    }
+}
