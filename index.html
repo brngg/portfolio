@@ -59,8 +59,8 @@
                 <canvas id="pixel-matrix" aria-label="Interactive pixel drawing canvas" class="w-full h-full absolute inset-0 z-10"></canvas>
 
                 <div class="absolute bottom-8 right-8 text-right pointer-events-none z-20 font-mono text-[0.75rem] uppercase tracking-wider text-dark bg-white/80 p-2 backdrop-blur-sm border border-line">
-                    [ ∿ INTERACTIVE_BUFFER ]<br>
-                    HOVER TO WRITE TO MEMORY<br>
+                    [ ∿ INTERACTIVE_SPACE ]<br>
+                    HOVER TO INTERACT<br>
                     COLOR SPACE: <span class="text-brand font-bold">#0000FF</span>
                 </div>
             </div>
@@ -76,46 +76,69 @@
             </div>
 
             <article class="project-panel border-b border-line">
-                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-orderbook" data-project-toggle>
+                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-edgarq" data-project-toggle>
                     <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">● 001</span>
-                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">Order Book Market Data Simulator <span class="project-arrow">▾</span></span>
-                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ C++ / gRPC / TypeScript ]</span>
-                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">ACTIVE</span>
+                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">EdgarQ <span class="project-arrow">▾</span></span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ Java / React / Postgres ]</span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">LIVE</span>
                 </button>
-                <div class="project-detail-panel" id="project-orderbook" hidden>
+                <div class="project-detail-panel" id="project-edgarq" hidden>
                     <div class="project-detail-grid">
                         <p class="project-description-reveal">
-                            A C++17 price-time-priority matching engine with limit, market, IOC, FOK, and cancel support. It produces snapshot and incremental market data streams and includes benchmarked sub-200 ns matching workloads.
+                            A full-stack SEC filing evidence engine for asking questions over company filings and receiving source-backed answers. It combines structured XBRL facts, filing sections, tables, hybrid retrieval, adequacy checks, and citation traces so financial research answers remain inspectable.
                         </p>
                         <div class="project-detail-meta">
-                            MATCHING ENGINE / MARKET DATA / DOCKER / BENCHMARKS
+                            SEC EDGAR / EVIDENCE RAG / SPRING BOOT / QDRANT
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/brngg/orderbook-market-data-simulator" rel="noreferrer" target="_blank">GitHub</a>
-                            <a href="https://orderbook-market-data-simulator.onrender.com" rel="noreferrer" target="_blank">Live Demo</a>
+                            <a href="https://github.com/brngg/edgarq" rel="noreferrer" target="_blank">GitHub</a>
+                            <a href="https://edgarqdemo.app/" rel="noreferrer" target="_blank">Live Demo</a>
                         </div>
                     </div>
                 </div>
             </article>
 
             <article class="project-panel border-b border-line">
-                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-heatmap" data-project-toggle>
-                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">◐ 002</span>
-                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">Market Heatmap Preview <span class="project-arrow">▾</span></span>
-                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ Vite / Docker / Render ]</span>
+                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-orderbook" data-project-toggle>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">● 002</span>
+                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">Order Book Market Data Simulator <span class="project-arrow">▾</span></span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ C++ / gRPC / TypeScript ]</span>
                     <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">LIVE</span>
                 </button>
-                <div class="project-detail-panel" id="project-heatmap" hidden>
+                <div class="project-detail-panel" id="project-orderbook" hidden>
                     <div class="project-detail-grid">
                         <p class="project-description-reveal">
-                            Browser preview for the order book simulator that visualizes market depth and stream updates as an operator-facing heatmap. The deployment is containerized and hosted for quick inspection.
+                            A from-scratch C++ price-time-priority matching engine with limit, market, IOC, FOK, and cancel support. It publishes snapshot and incremental market data through gRPC/SSE and includes a TypeScript heatmap preview plus benchmarked low-latency workloads.
                         </p>
                         <div class="project-detail-meta">
-                            FRONTEND PREVIEW / MARKET DEPTH / RENDER DEPLOY
+                            MATCHING ENGINE / MARKET DATA / SSE / BENCHMARKS
                         </div>
                         <div class="project-links">
-                            <a href="https://orderbook-market-data-simulator.onrender.com" rel="noreferrer" target="_blank">Live Demo</a>
-                            <a href="https://github.com/brngg/orderbook-market-data-simulator" rel="noreferrer" target="_blank">Source</a>
+                            <a href="https://github.com/brngg/orderbook-market-data-simulator" rel="noreferrer" target="_blank">GitHub</a>
+                            <a href="https://orderbook-market-data-simulator.onrender.com/orderbook_heatmap.html" rel="noreferrer" target="_blank">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-panel border-b border-line">
+                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-livestream" data-project-toggle>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">● 003</span>
+                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">Live Stream Sentiment Monitor <span class="project-arrow">▾</span></span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ Go / TypeScript / Python ]</span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">ACTIVE</span>
+                </button>
+                <div class="project-detail-panel" id="project-livestream" hidden>
+                    <div class="project-detail-grid">
+                        <p class="project-description-reveal">
+                            A full-stack live analysis system that tracks audience sentiment in chat, aligns it with live speech transcripts, and saves replayable evidence for review. It emphasizes inspectable signal windows with timing, transcript context, chat samples, proof metrics, and replay/evaluation hooks.
+                        </p>
+                        <div class="project-detail-meta">
+                            TWITCH INGESTION / ASR / SENTIMENT / REPLAY EVIDENCE
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/brngg/livestream-sentiment-monitor" rel="noreferrer" target="_blank">GitHub</a>
+                            <a href="https://github.com/brngg/livestream-sentiment-monitor/blob/main/docs/demo.md" rel="noreferrer" target="_blank">Demo Notes</a>
                         </div>
                     </div>
                 </div>
@@ -123,7 +146,7 @@
 
             <article class="project-panel border-b border-line">
                 <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-herald" data-project-toggle>
-                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">● 003</span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">● 004</span>
                     <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">Herald Remediation Agent <span class="project-arrow">▾</span></span>
                     <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ Python / Kubernetes ]</span>
                     <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">ACTIVE</span>
@@ -138,28 +161,6 @@
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/brngg/herald" rel="noreferrer" target="_blank">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <article class="project-panel border-b border-line">
-                <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-sec" data-project-toggle>
-                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">● 004</span>
-                    <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline">SEC Early Warning Index <span class="project-arrow">▾</span></span>
-                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ Python / Streamlit ]</span>
-                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">ACTIVE</span>
-                </button>
-                <div class="project-detail-panel" id="project-sec" hidden>
-                    <div class="project-detail-grid">
-                        <p class="project-description-reveal">
-                            A public-data monitoring system built on SEC EDGAR filings that ranks issuers by review priority using filing-behavior anomalies, explainable scoring, and a lightweight workflow for daily triage.
-                        </p>
-                        <div class="project-detail-meta">
-                            SEC EDGAR / RISK SCORING / POSTGRES / OPERATOR TRIAGE
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/brngg/sec-anomaly-detector" rel="noreferrer" target="_blank">GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -190,7 +191,7 @@
             <article class="project-panel border-b border-line">
                 <button type="button" class="index-row-link project-toggle group w-full text-left block md:grid md:grid-cols-[1fr_3fr_2fr_1fr] py-4 md:py-6 hover:bg-brand hover:border-brand hover:text-white transition-none items-baseline px-4 md:px-0 gap-2 md:gap-0" aria-expanded="false" aria-controls="project-sentiment" data-project-toggle>
                     <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">○ 006</span>
-                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ ARCHIVED ━╺━ ]</span>
+                    <span class="font-mono text-[0.85rem] mute-text text-mute block md:inline">[ ARCHIVED -- ]</span>
                     <span class="text-xl md:text-2xl font-medium tracking-tight block md:inline line-through mute-text text-mute">Market Sentiment Analysis Platform <span class="project-arrow">▾</span></span>
                     <span class="font-mono text-[0.85rem] mute-text text-mute block md:text-right">2024</span>
                 </button>
